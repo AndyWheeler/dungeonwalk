@@ -31,21 +31,19 @@ public class Main {
         myRoom.add(npcOne);
         myRoom.add(npcTwo);
 
-        String display = "";
+        String display;
         System.out.println(myRoom.getView(playerOne));
 
         int targetX;
         int targetY;
         while(sc.hasNextLine()) {
-            System.out.println(myRoom.getView(playerOne));
-            System.out.println(display);
 
             targetX = playerOne.getX();
             targetY = playerOne.getY();
             display = "";
 
             String input = sc.nextLine();
-            char inputChar = (char)0;
+            char inputChar = 0;
             if (input.length() > 0) {
                 inputChar = input.toLowerCase().charAt(0);
             }
@@ -82,6 +80,8 @@ public class Main {
                 }
             }
 
+            System.out.println(myRoom.getView(playerOne));
+            System.out.println(display);
 
         }
     }

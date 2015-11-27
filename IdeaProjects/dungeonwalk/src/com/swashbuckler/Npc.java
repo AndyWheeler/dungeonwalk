@@ -14,7 +14,7 @@ public class Npc extends Creature {
 
     public Npc(int x, int y, char icon) {
         super(x, y, icon);
-        this.quote = "I look like " + icon + ".";
+        this.quote = "I look like a " + icon + ".";
     }
 
     public String getQuote() {
