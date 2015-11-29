@@ -5,15 +5,19 @@ import java.util.*;
 public class Main {
 
     private static final String map =
-            "#########" +
-            "#   #   #" +
-            "#   # # #" +
-            "#     # #" +
-            "#########";
-    private static final int width = 9;
-    private static final int height = 5;
-    private static final int startx = 2;
-    private static final int starty = 3;
+            "##########" +
+            "#    #   #" +
+            "#    # # #" +
+            "#  #   # #" +
+            "#  #   # #" +
+            "#      # #" +
+            "######## #" +
+            "#        #" +
+            "#        #" +
+            "##########";
+
+    private static final int width = 10;
+    private static final int height = 10;
 
     public static void main(String[] args) {
 
@@ -23,19 +27,22 @@ public class Main {
 
         Room myRoom = new Room(map, width, height);
 
-        Creature playerOne = new Player(startx, starty, '@');
-        Creature npcOne = new Npc(1, 1, '$');
-        Creature npcTwo = new Npc(7, 3);
+        Creature playerOne = new Player(2, 3, '@');
+        Creature npcOne = new Npc(1, 1, 'b');
+        Creature npcTwo = new Npc(6, 5);
+        Creature npcThree = new Npc(1, 8, '$', "Congrats. You found me.");
 
         myRoom.add(playerOne);
         myRoom.add(npcOne);
         myRoom.add(npcTwo);
+        myRoom.add(npcThree);
 
         String display;
         System.out.println(myRoom.getView(playerOne));
 
         int targetX;
         int targetY;
+        Creature activePlayer = playerOne;
         while(sc.hasNextLine()) {
 
             targetX = playerOne.getX();

@@ -24,10 +24,12 @@ public class Room {
         // convert mapText to a 2D array of chars
         this.map = new char[width][height];
         int i = 0;
-        for (int k = 0; k < height; k++)
+        for (int k = 0; k < height; k++) {
             for (int j = 0; j < width; j++) {
                 this.map[j][k] = mapText.charAt(i);
-                i++; }
+                i++;
+            }
+        }
     }
 
     public void move(Creature creature, int newX, int newY) {
@@ -54,8 +56,10 @@ public class Room {
         String mapText = "";
         for (int j = 0; j < height; j++) {
             for (int i = 0; i < width; i++) {
-                mapText += this.map[i][j]; }
-            mapText += "\n"; }
+                mapText += this.map[i][j];
+            }
+            mapText += "\n";
+        }
         return mapText;
     }
 
@@ -74,8 +78,10 @@ public class Room {
 
         for (int j = topEdge; j < bottomEdge; j++) {
             for (int i = leftEdge; i < rightEdge; i++) {
-                view += this.map[i][j]; }
-            view += "\n"; }
+                view += this.map[i][j];
+            }
+            view += "\n";
+        }
 
         return view;
     }
@@ -84,7 +90,7 @@ public class Room {
         if ( 0 <= x && x < width && 0 <= y && y < height) {
             return map[x][y];
         }
-        else return 0;
+        return 0;
     }
 
     public Creature getCreatureAt(int x, int y) {
@@ -93,7 +99,7 @@ public class Room {
                 return c;
             }
         }
-        return new Creature(x, y);
+        return null;
     }
 
 }

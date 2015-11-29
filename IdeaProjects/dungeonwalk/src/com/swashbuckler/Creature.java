@@ -3,7 +3,7 @@ package com.swashbuckler;
 /**
  * Created by Andy on 11/24/15.
  */
-public class Creature {
+abstract class Creature {
 
     private int x;
     private int y;
