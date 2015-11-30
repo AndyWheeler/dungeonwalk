@@ -15,6 +15,7 @@ abstract class Creature {
         //no icon provided; generate random number, letter or symbol
         this.setRandomIcon();
     }
+
     public Creature(int x, int y, char icon) {
         this.x = x;
         this.y = y;
@@ -26,7 +27,7 @@ abstract class Creature {
     }
 
     private void setRandomIcon() {
-        this.icon = (char) ( (int)(36+Math.random()*90) );
+        this.icon = (char) ((int) (36 + Math.random() * 90));
     }
 
     public int getX() {
@@ -55,12 +56,12 @@ abstract class Creature {
     }
 
     public void setIcon(char icon) {
-        if ((int)icon >= 36 && icon <= 126) {
+        if ((int) icon >= 36 && icon <= 126) {
             this.icon = icon;
         }
     }
 
-    public String getQuote(){
+    public String getQuote() {
         return "";
     }
 
