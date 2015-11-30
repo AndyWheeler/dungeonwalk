@@ -7,35 +7,32 @@ package com.swashbuckler;
 import java.util.*;
 
 public class Room {
-    private List<Creature> creatures;
+    private List<Character> characters;
     private ArrayMap map;
-    private int viewX = 7;
-    private int viewY = 5;
+    private final int viewX = 7;
+    private final int viewY = 5;
 
     public Room(String mapText, int w, int h) {
 
-        this.creatures = new ArrayList<Creature>();
+        this.characters = new ArrayList<Character>();
 
         this.map = new ArrayMap(mapText, w, h);
     }
 
-    public void move(Creature creature, int newX, int newY) {
-        this.remove(creature);
-        creature.move(newX, newY);
-        this.add(creature);
+    public void shift(Character character, int newX, int newY) {
+        this.map.clearTile(character.getX(), character.getY());
+        this.map.placeTile(newX, newY, character.getIcon());
     }
 
-    public void add(Creature newCreature) {
-        this.creatures.add(newCreature);
-        int x = newCreature.getX();
-        int y = newCreature.getY();
-        this.map.placeTile(x, y, newCreature.getIcon());
+    public void add(Character newCharacter) {
+        this.characters.add(newCharacter);
+        this.map.placeTile(newCharacter.getX(), newCharacter.getY(), newCharacter.getIcon());
     }
 
-    public void remove(Creature oldCreature) {
-        this.creatures.remove(oldCreature);
-        int x = oldCreature.getX();
-        int y = oldCreature.getY();
+    public void remove(Character oldCharacter) {
+        this.characters.remove(oldCharacter);
+        int x = oldCharacter.getX();
+        int y = oldCharacter.getY();
         this.map.clearTile(x, y);
     }
 
@@ -43,12 +40,20 @@ public class Room {
         return this.map.tileAt(x, y);
     }
 
+    public Character characterAt(int x, int y) {
+        for (Character c : this.characters) {
+            if (c.getX() == x && c.getY() == y) {
+                return c;
+            }
+        }
+        return null;
+    }
 
     public String toString() {
         return this.map.toString();
     }
 
-    public String getView(Creature p) {
+    public String getView(Character p) {
         return getView(p.getX(), p.getY());
     }
 
@@ -69,14 +74,5 @@ public class Room {
         }
 
         return view;
-    }
-
-    public Creature getCreatureAt(int x, int y) {
-        for (Creature c : this.creatures) {
-            if (c.getX() == x && c.getY() == y) {
-                return c;
-            }
-        }
-        return null;
     }
 }

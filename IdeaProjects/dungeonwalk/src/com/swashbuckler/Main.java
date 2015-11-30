@@ -32,23 +32,26 @@ public class Main {
         System.out.println("Enjoy your dungeon walk.");
         System.out.println();
 
-        Room myRoom = new Room(map, width, height);
+        //initialize our room and fill with characters
+        Room cavernOne = new Room(map, width, height);
 
-        Creature playerOne = new Player(2, 3, '@');
-        Creature npcOne = new Npc(1, 1, 'b', "Seek the %!");
-        Creature npcTwo = new Npc(6, 5);
-        Creature npcThree = new Npc(1, 8, '%', "Congrats. You found me.");
+        Character playerOne = new Player(2, 3, '@', cavernOne);
+        Character npcOne = new Npc(1, 1, 'b', "Seek the %!");
+        Character npcTwo = new Npc(6, 5);
+        Character npcThree = new Npc(1, 7, '%', "Congrats. You found me.");
 
-        myRoom.add(playerOne);
-        myRoom.add(npcOne);
-        myRoom.add(npcTwo);
-        myRoom.add(npcThree);
+        cavernOne.add(playerOne);
+        cavernOne.add(npcOne);
+        cavernOne.add(npcTwo);
+        cavernOne.add(npcThree);
 
+        //initialize display/input loop
         String display;
-        System.out.println(myRoom.getView(playerOne));
-
         int targetX;
         int targetY;
+
+        System.out.println(cavernOne.getView(playerOne));
+
         while (sc.hasNextLine()) {
 
             targetX = playerOne.getX();
@@ -82,18 +85,18 @@ public class Main {
 
             //check for movement
             if (targetX != playerOne.getX() || targetY != playerOne.getY()) {
-                char targetTile = myRoom.tileAt(targetX, targetY);
+                char targetTile = cavernOne.tileAt(targetX, targetY);
                 if (targetTile == ' ') { //move into empty space
-                    myRoom.move(playerOne, targetX, targetY);
+                    playerOne.move(targetX, targetY);
                 } else if (targetTile == '#') { //don't move; there's a wall there
                     display = "There is a wall there.";
-                } else { //interact with creature
-                    Creature targetCreature = myRoom.getCreatureAt(targetX, targetY);
-                    display = targetCreature.getQuote();
+                } else { //interact with person
+                    Character targetCharacter = cavernOne.characterAt(targetX, targetY);
+                    display = targetCharacter.getQuote();
                 }
             }
 
-            System.out.println(myRoom.getView(playerOne));
+            System.out.println(cavernOne.getView(playerOne));
             System.out.println(display);
 
         }

@@ -3,30 +3,30 @@ package com.swashbuckler;
 /**
  * Created by Andy on 11/24/15.
  */
-abstract class Creature {
+abstract class Character {
 
     private int x;
     private int y;
     private char icon;
 
-    public Creature(int x, int y) {
+    public Character(int x, int y) {
         this.x = x;
         this.y = y;
         //no icon provided; generate random number, letter or symbol
-        this.setRandomIcon();
+        this.randomizeIcon();
     }
 
-    public Creature(int x, int y, char icon) {
+    public Character(int x, int y, char icon) {
         this.x = x;
         this.y = y;
         if (icon >= 33 && icon <= 126 && icon != 35) {
             this.icon = icon;
         } else {
-            this.setRandomIcon();
+            this.randomizeIcon();
         }
     }
 
-    private void setRandomIcon() {
+    private void randomizeIcon() {
         this.icon = (char) ((int) (36 + Math.random() * 90));
     }
 
@@ -34,7 +34,7 @@ abstract class Creature {
         return x;
     }
 
-    public void setX(int x) {
+    private void setX(int x) {
         this.x = x;
     }
 
@@ -42,7 +42,7 @@ abstract class Creature {
         return y;
     }
 
-    public void setY(int y) {
+    private void setY(int y) {
         this.y = y;
     }
 
@@ -53,12 +53,6 @@ abstract class Creature {
 
     public char getIcon() {
         return icon;
-    }
-
-    public void setIcon(char icon) {
-        if ((int) icon >= 36 && icon <= 126) {
-            this.icon = icon;
-        }
     }
 
     public String getQuote() {

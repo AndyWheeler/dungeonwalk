@@ -3,10 +3,10 @@ package com.swashbuckler;
 /**
  * Created by Andy on 11/30/15.
  */
-public class ArrayMap {
+class ArrayMap {
     private char[][] map;
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     public ArrayMap(String textMap, int width, int height) {
         this.width = width;
